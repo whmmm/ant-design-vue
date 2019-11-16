@@ -60,6 +60,8 @@ export default {
   ColumnGroup,
   mixins: [BaseMixin],
   props: initDefaultProps(TableProps, {
+    // 是否截断 绑定的 dataSource，默认 true
+    truncate: true,
     dataSource: [],
     useFixedHeader: false,
     // rowSelection: null,
@@ -998,6 +1000,13 @@ export default {
       // ---
       // 当数据量少于等于每页数量时，直接设置数据
       // 否则进行读取分页数据
+
+      // TableProps props: truncate 为false时不截断数据。例如，行合并的时候
+      if(!this.truncate){
+        return data;
+      }
+
+
       if (data.length > pageSize || pageSize === Number.MAX_VALUE) {
         data = data.filter((_, i) => {
           return i >= (current - 1) * pageSize && i < current * pageSize;

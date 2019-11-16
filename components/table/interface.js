@@ -87,6 +87,8 @@ export const TableRowSelection = {
 };
 
 export const TableProps = {
+  // 是否截断 dataSource
+  truncate: PropTypes.bool,
   prefixCls: PropTypes.string,
   dropdownPrefixCls: PropTypes.string,
   rowSelection: PropTypes.oneOfType([PropTypes.shape(TableRowSelection).loose, null]),
